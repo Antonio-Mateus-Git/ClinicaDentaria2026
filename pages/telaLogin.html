@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Dentária: Sorriso Real</title>
+    <style>
+        /* Configuracões globais da página */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* Variaveis do css(Onde conterão as informações de estilo como: cores e fontes usados na página) */
+        :root{
+
+        }
+        /* Estilo geral da página */
+        html, body{
+            width: 100%;
+            height: 100vh;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clínica Dentária: Sorriso Real - Fazer login</h1>
+    <div class="container-tela-login">
+        <form action="" method="post">
+            <label for="email">E-mail: </label>
+            <input type="email" name="email" id="email" placeholder="exemploemail@gmail.com">
+            <label for="senha">Palavra Passe: </label>
+            <input type="text" name="senha" id="senha" placeholder="mínimo 8 caracteres...">
+            <label for="tipoAcesso">Escolher tipo de acesso</label>
+            <select name="tipoAcesso" id="tipoAcesso">
+                <option disabled selected>Tipos de acesso...</option>
+                <option value="Paciente">Paciênte</option>
+                <option value="Recepcionista">Recepcionísta</option>
+                <option value="Dentista">Dentísta</option>
+                <option value="ADM">ADM do sistema</option>
+            </select>
+            <label for="regraAcesso"><input type="checkbox" name="regraAcesso" id="regraAcesso">Por questões de segurança a sua sessão tera uma duração de 01h:30min. Após o termini do tempo a sessão será encerrada automaticamente.</label>
+            <button type="submit" id="btn-submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
