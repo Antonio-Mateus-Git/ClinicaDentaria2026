@@ -4,8 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Dentária: Sorriso Real</title>
+    <link rel="stylesheet" href="../styles/estiloGlobal.css">
+    <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        body > h1{
+            text-align: center;
+            display: flex;
+        }
+        form{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            width: 800px;
+        }
+        form input, form select, form  button{
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            border: none;
+            outline: none;
+            background-color: #00000010;
+        }
+        form  button{
+            margin-top: 25px;
+        }
+        .part01, .part02{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 45%;
+        }
+        span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        span > img{
+            width: 50px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Clínica Dentária <span><img src="../images/AIRetouch_20260520_162007909.png" alt=""> Real</span>: Cadastro de Paciênte</h1>
+    <div class="formularioCAdastroPaciente">
+        <form action="" method="post">
+            <div class="part01">
+                <label for="nomeCompleto">Nome Completo: </label>
+                <input type="text" name="nomeCompleto" id=""nomeCompleto>
+                <label for="email">E-mail: </label>
+                <input type="email" name="email" id="email">
+                <label for="genero">Gênero: </label>
+                <select name="genero" id="genero">
+                    <option disabled selected>Escolher Gênero...</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                </select>
+                <label for="tipoUsuario">Tipo de Usuário: </label>
+                <select name="tipoUsuario" id="tipoUsuario">
+                    <option value="Administrador" disabled>Administrador</option>
+                    <option value="Paciente" selected>Paciênte</option>
+                    <option value="Dentista" disabled>Dentista</option>
+                    <option value="Recepcionista" disabled>Recepcionísta</option>
+                </select>
+                <label for="dataNascimento">Data de Nascimento: </label>
+                <input type="date" name="dataNascimento" id="dataNascimento">
+            </div>
+            <div class="part02">
+                <label for="telefone">Numero Telefonico: </label>
+                <input type="tel" name="telefone" id="telefone">
+                <label for="morada">Endereço/Morada: </label>
+                <input type="text" name="morada" id="morada">
+                <label for="senha">Criar Senha: </label>
+                <input type="password" name="senha" id="senha">
+                <label for="senhaConf">Confirmar Senha: </label>
+                <input type="password" name="senhaConf" id="senhaConf">
+                <button type="submit">Cadastrar Paciênte</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

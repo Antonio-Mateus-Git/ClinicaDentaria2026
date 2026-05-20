@@ -4,8 +4,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Dentária: Sorriso Real</title>
+    <link rel="stylesheet" href="../styles/estiloGlobal.css">
+    <link rel="stylesheet" href="../iconsFonteawesome/css/all.min.css">
+    <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
+    <style>
+        body{
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            grid-template-rows: 100px 1fr;
+            grid-template-areas: 
+                "slideBar menuSuperior"
+                "slideBar painelPrincipal"
+            ;
+        }
+        .slideBar{
+            grid-area: slideBar;
+            background-color: #00000020;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0px 5px #00000020;
+        }
+        .slideBar > .logo{
+            margin: 25px 0px 0px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slideBar > .logo > img{
+            width: 50px;
+            height: 40px;
+        }
+        .slideBar > .logo > h1{
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .slideBar > p{
+            font-size: .8rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #00000060;
+        }
+        .slideBar > .itensMenu{
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            gap: 10px;
+            height: 100%;
+        }
+        .slideBar > .itensMenu > a{
+            padding: 10px;
+            border-radius: 40px 0px 0px 40px;
+            background-color: #00000020;
+            color: #000000;
+            text-decoration: none;
+            white-space: nowrap;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+        }
+        .slideBar > .itensMenu > .sair{
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+        .menuSuperior{
+            grid-area: menuSuperior;
+            background-color: #00000040;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 5px #00000020;
+        }
+        .menuSuperior > .descricaoMenu > h1{
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 20px 0px 0px 0px;
+        }
+        .menuSuperior > .descricaoMenu > p{
+            font-size: .8rem;
+            text-align: center;
+            color: #00000060;
+            margin-left: 10px;
+            letter-spacing: 2px;
+        }
+        .menuSuperior > .painelEstadoUsuario{
+            display: flex;
+            margin-right: 10px;
+            align-items: center;
+        }
+        .menuSuperior > .painelEstadoUsuario > .imagem{
+            width: 60px;
+            height: 60px;
+            border: 3px ridge #00000060;
+            box-shadow: 0px 0px 5px #00000060;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .menuSuperior > .painelEstadoUsuario > .imagem > img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .menuSuperior > .painelEstadoUsuario > .imagem > .status{
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px green;
+            position: relative;
+            top: -17.5px;
+            left: 43px;
+            transform: translate(17.5px -43px);
+            background-color: greenyellow;
+        }
+        .painelPrincipal{
+            grid-area: painelPrincipal;
+            display: grid;
+            grid-template-columns: .7fr 1fr;
+            grid-template-areas: "perfil informacoesClinicasPaciente";
+        }
+        .perfil{
+            grid-area: perfil;
+            background-color: #00000040;
+        }
+        .informacoesClinicasPaciente{
+            grid-area: informacoesClinicasPaciente;
+            background-color: #00000060;
+        }
+        i{
+            border: 3px groove black;
+            padding: 8px 6px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="slideBar">
+        <div class="logo">
+            <img src="../images/AIRetouch_20260520_162007909.png" alt=""> 
+            <h1>Real</h1>
+        </div>
+        <p>Menu do sistema: <strong>Paciênte</strong></p>
+        <div class="itensMenu">
+            <a href="#"><i class="fas fa-stethoscope"></i>Consultas</a>
+            <a href="#"><i class="fas fa-notes-medical"></i>Historico Clínico</a>
+            <a href="#"><i class="fas fa-calendar-check"></i>Marcações</a>
+            <a href="#"><i class="fas fa-user"></i>Perfil</a>
+            <a class="sair" href="#"><i class="fas fa-arrow-right-from-bracket"></i>Sair</a>
+        </div>
+    </div>
+    <div class="menuSuperior">
+        <div class="descricaoMenu">
+            <h1>Painel do Paciênte</h1>
+            <p>Página de dados pessoais do paciênte</p>
+        </div>
+        <div class="painelEstadoUsuario">
+            <div class="imagem">
+                <img src="../images/perfil.jpg" alt="">
+                <div class="status"></div>
+            </div>
+            <div class="estadoUsuario">
+                <span class="status">Online</span>
+                <div>
+                    <span class="relogio" id="h"></span>:
+                    <span class="relogio" id="m"></span>:
+                    <span class="relogio" id="s"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="painelPrincipal">
+        <div class="perfil">
+
+        </div>
+        <div class="informacoesClinicasPaciente">
+
+        </div>
+    </div>
+    <script>
+        let H = window.document.getElementById("h")
+        let M = window.document.getElementById("m")
+        let S = window.document.getElementById("s")
+        
+        if(!localStorage.getItem("hora")){
+           let horaCompleta = {
+                hora: 1,
+                minuto: 30,
+                segundo: 0
+            }
+            localStorage.setItem("hora", JSON.stringify(horaCompleta))
+        }
+        let contador = setInterval(() => {
+            let horaCompleta = JSON.parse(localStorage.getItem("hora") ) || []
+            H.innerHTML = String(horaCompleta.hora).padStart(2, "0")
+            M.innerHTML = String(horaCompleta.minuto).padStart(2, "0")
+            S.innerHTML = String(horaCompleta.segundo).padStart(2, "0")
+            if (horaCompleta.hora === 0 && horaCompleta.minuto === 0 && horaCompleta.segundo === 0) {
+                clearInterval(contador)
+                localStorage.removeItem("hora")
+                alert("O seu tempo de sessão terminou, inicie uma nova por questão de segurança.")
+                return
+            }
+            if (horaCompleta.segundo > 0) {
+                horaCompleta.segundo--
+                
+            }
+            else {
+                horaCompleta.segundo = 59
+                if (horaCompleta.minuto > 0) {
+                    horaCompleta.minuto--
+                }else{
+                    horaCompleta.minuto = 59
+                    if (horaCompleta.hora > 0) {
+                        horaCompleta.hora--
+                    }
+                }
+            }
+            localStorage.setItem("hora", JSON.stringify(horaCompleta))
+
+            
+        }, 1000);
+    </script>
 </body>
 </html>
