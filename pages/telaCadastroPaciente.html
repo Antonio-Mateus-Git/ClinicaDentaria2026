@@ -54,15 +54,15 @@
 <body>
     <h1>Clínica Dentária <span><img src="../images/AIRetouch_20260520_162007909.png" alt=""> Real</span>: Cadastro de Paciênte</h1>
     <div class="formularioCAdastroPaciente">
-        <form action="" method="post">
+        <form method="post" id="formulario">
             <div class="part01">
                 <label for="nomeCompleto">Nome Completo: </label>
-                <input type="text" name="nomeCompleto" id=""nomeCompleto>
+                <input type="text" name="nomeCompleto" id="nomeCompleto">
                 <label for="email">E-mail: </label>
                 <input type="email" name="email" id="email">
                 <label for="genero">Gênero: </label>
                 <select name="genero" id="genero">
-                    <option disabled selected>Escolher Gênero...</option>
+                    <option value="" disabled selected>Escolher Gênero...</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
                 </select>
@@ -89,5 +89,6 @@
             </div>
         </form>
     </div>
+    <script src="../JavaScript/cadastroPaciente.js"></script>
 </body>
 </html>
