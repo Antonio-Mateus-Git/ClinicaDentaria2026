@@ -6,22 +6,56 @@
     <title>Clínica Dentária: Sorriso Real</title>
     <link rel="stylesheet" href="../styles/estiloGlobal.css">
     <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ 
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
         body{
+            
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            background: linear-gradient(
+135deg,
+#eff6ff,
+#f8fafc,
+#dbeafe
+);
+                    min-height:100vh;
         }
         body > h1{
+
             text-align: center;
             display: flex;
         }
+        
+        h1,h2,h3{
+    font-weight: 700;
+    letter-spacing: -1px;
+}
         form{
             display: flex;
             justify-content: space-between;
-            padding: 20px;
-            width: 800px;
+            background: white;
+
+    border-radius: 24px;
+                width: 800px;
+    padding: 40px;
+
+    box-shadow:
+    0 20px 60px rgba(15,23,42,0.08);
+
+    border: 1px solid #e2e8f0;
+        
+
         }
         form input, form select, form  button{
             padding: 10px;
@@ -30,36 +64,73 @@
             border: none;
             outline: none;
             background-color: #00000010;
+            font-family: 'Inter', sans-serif;
         }
+        
         form  button{
-            margin-top: 25px;
+           background: rgb(60, 151, 60);
+
+    color: white;
+
+    font-weight: 600;
+margin-top: 20px;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 14px;
+border: none;
+    transition: 0.3s ease;
         }
+        form button:hover{
+    background: #6ab68f;
+
+    transform: translateY(-2px);
+}
+       form input, form select{
+
+         padding:16px;
+
+    border-radius:14px;
+
+    border:1.5px solid #dbeafe;
+
+    background:white;
+
+    transition:0.3s ease;
+
+    font-size:1rem;
+
+        }
+        input:focus,
+select:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,0.15);
+}
+            label{
+                 margin-top:8px;
+    font-weight: 600;
+    color: #334155;}
+
         .part01, .part02{
             display: flex;
             flex-direction: column;
             gap: 5px;
             width: 45%;
         }
-        span{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        span > img{
-            width: 50px;
-            height: 40px;
-        }
+
     </style>
 </head>
 <body>
-    <h1>Clínica Dentária <span><img src="../images/AIRetouch_20260520_162007909.png" alt=""> Real</span>: Cadastro de Paciênte</h1>
+    <h1> Cadastro de Paciênte</h1>
     <div class="formularioCAdastroPaciente">
         <form method="post" id="formulario">
             <div class="part01">
                 <label for="nomeCompleto">Nome Completo: </label>
-                <input type="text" name="nomeCompleto" id="nomeCompleto">
+                <input type="text" name="nomeCompleto" id=""nomeCompleto>
                 <label for="email">E-mail: </label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
                 <label for="genero">Gênero: </label>
                 <select name="genero" id="genero">
                     <option value="" disabled selected>Escolher Gênero...</option>
@@ -67,28 +138,27 @@
                     <option value="Feminino">Feminino</option>
                 </select>
                 <label for="tipoUsuario">Tipo de Usuário: </label>
-                <select name="tipoUsuario" id="tipoUsuario">
+                <select name="tipoUsuario" id="tipoUsuario" required>
                     <option value="Administrador" disabled>Administrador</option>
                     <option value="Paciente" selected>Paciênte</option>
                     <option value="Dentista" disabled>Dentista</option>
                     <option value="Recepcionista" disabled>Recepcionísta</option>
                 </select>
                 <label for="dataNascimento">Data de Nascimento: </label>
-                <input type="date" name="dataNascimento" id="dataNascimento">
+                <input type="date" name="dataNascimento" id="dataNascimento" required>
             </div>
             <div class="part02">
-                <label for="telefone">Numero Telefonico: </label>
-                <input type="tel" name="telefone" id="telefone">
+                <label for="telefone">Número Telefônico: </label>
+                <input type="tel" name="telefone" id="telefone" required>
                 <label for="morada">Endereço/Morada: </label>
-                <input type="text" name="morada" id="morada">
+                <input type="text" name="morada" id="morada" required>
                 <label for="senha">Criar Senha: </label>
-                <input type="password" name="senha" id="senha">
+                <input type="password" name="senha" id="senha" required>
                 <label for="senhaConf">Confirmar Senha: </label>
-                <input type="password" name="senhaConf" id="senhaConf">
-                <button type="submit">Cadastrar Paciênte</button>
+                <input type="password" name="senhaConf" id="senhaConf" required>
+                <button type="submit" id="cadastro">Cadastrar Paciênte</button>
             </div>
         </form>
     </div>
-    <script src="../JavaScript/cadastroPaciente.js"></script>
 </body>
 </html>

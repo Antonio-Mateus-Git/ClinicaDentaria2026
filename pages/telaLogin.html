@@ -6,62 +6,277 @@
     <title>Clínica Dentária: Sorriso Real</title>
     <link rel="stylesheet" href="../styles/estiloGlobal.css">
     <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        *{
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            padding:  0;
+            margin: 0;
+        }
         body{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #f8fafc,
+        #dbeafe
+    );
         }
-        body > h1{
-            text-align: center;
-            display: flex;
-        }
+        h1{
+    font-size: 2.3rem;
+
+    font-weight: 700;
+
+    color: #0f172a;
+}
+        
         form{
             display: flex;
             flex-direction: column;
-            gap: 5px;
             padding: 20px;
+            max-width: 450px;
+            width: 130%;
+            height: 440px;
+            margin: 0 auto;
+             background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.08);
+
+    border-radius: 24px;
+
+    padding: 35px;
+
+    gap: 14px;
+
         }
-        form > input, form > select, form > button{
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            border: none;
-            outline: none;
-            background-color: #00000010;
-        }
-        span{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        span > img{
-            width: 50px;
-            height: 40px;
-        }
+        label{
+    font-size: 0.95rem;
+
+    font-weight: 500;
+
+    color: #334155;
+}
+        form input,
+form select{
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    border: 1px solid #dbeafe;
+
+    background: white;
+
+    transition: 0.3s ease;
+
+    font-size: 1rem;
+}
+form input:focus,
+form select:focus{
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,0.15);
+}
+form button{
+
+    background: rgb(60, 151, 60);
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 14px;
+border: none;
+    transition: 0.3s ease;
+}
+form button:hover{
+    background: #6ab68f;
+
+    transform: translateY(-2px);
+}
+.doi{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+}
+.doi h1{
+    text-align: center;
+    margin-left: 50px;
+}
+        
     </style>
 </head>
 <body>
-    <h1>Clínica Dentária <span><img src="../images/AIRetouch_20260520_162007909.png" alt="">Real</span>: Fazer login</h1>
+    <div class="doi">
+    <h1>login</h1>
+    
+</div>
     <div class="container-tela-login">
         <form action="" method="post">
             <label for="email">E-mail: </label>
             <input type="email" name="email" id="email" placeholder="exemploemail@gmail.com">
             <label for="senha">Palavra Passe: </label>
-            <input type="text" name="senha" id="senha" placeholder="mínimo 8 caracteres...">
+            <input type="password" name="senha" id="senha" placeholder="mínimo 8 caracteres...">
             <label for="tipoAcesso">Escolher tipo de acesso</label>
             <select name="tipoAcesso" id="tipoAcesso">
                 <option disabled selected>Tipos de acesso...</option>
                 <option value="Paciente">Paciênte</option>
-                <option value="Recepcionista">Recepcionísta</option>
-                <option value="Dentista">Dentísta</option>
-                <option value="ADM">ADM do sistema</option>
+                
+
             </select>
-            <label for="regraAcesso"><input type="checkbox" name="regraAcesso" id="regraAcesso">Por questões de segurança a sua sessão tera uma duração de 01h:30min. Após o termini do tempo a sessão será encerrada automaticamente.</label>
+            
             <button type="submit" id="btn-submit">Entrar</button>
         </form>
     </div>
+
+    <script>
+
+    const form = document.querySelector("form");
+
+    const email = document.getElementById("email");
+    const senha = document.getElementById("senha");
+    const tipoAcesso = document.getElementById("tipoAcesso");
+
+    form.addEventListener("submit", function(event){
+
+        event.preventDefault();
+
+        limparErros();
+
+        let formularioValido = true;
+
+        // =========================
+        // VALIDAR EMAIL
+        // =========================
+
+        if(email.value.trim() === ""){
+
+            mostrarErro(email, "O e-mail é obrigatório.");
+            formularioValido = false;
+
+        }else if(!validarEmail(email.value)){
+
+            mostrarErro(email, "Digite um e-mail válido.");
+            formularioValido = false;
+
+        }
+
+        // =========================
+        // VALIDAR SENHA
+        // =========================
+
+        if(senha.value.trim() === ""){
+
+            mostrarErro(senha, "A palavra passe é obrigatória.");
+            formularioValido = false;
+
+        }else if(senha.value.length < 8){
+
+            mostrarErro(senha, "A senha deve ter no mínimo 8 caracteres.");
+            formularioValido = false;
+
+        }
+
+        // =========================
+        // VALIDAR TIPO DE ACESSO
+        // =========================
+
+        if(tipoAcesso.selectedIndex === 0){
+
+            mostrarErro(tipoAcesso, "Escolha um tipo de acesso.");
+            formularioValido = false;
+
+        }
+
+        // =========================
+        // FORMULÁRIO VÁLIDO
+        // =========================
+
+        if(formularioValido){
+
+            alert("Login realizado com sucesso!");
+
+            form.submit();
+
+        }
+
+    });
+
+    // ======================================
+    // FUNÇÃO VALIDAR EMAIL
+    // ======================================
+
+    function validarEmail(email){
+
+        const regex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        return regex.test(email);
+
+    }
+
+    
+
+    function mostrarErro(campo, mensagem){
+
+        campo.style.border = "2px solid red";
+
+        const erro = document.createElement("small");
+
+        erro.innerText = mensagem;
+
+        erro.style.color = "red";
+
+        erro.style.fontSize = "14px";
+
+        erro.classList.add("mensagem-erro");
+
+        campo.parentElement.insertBefore(
+            erro,
+            campo.nextSibling
+        );
+
+    }
+
+    
+
+    function limparErros(){
+    
+
+        const erros =
+        document.querySelectorAll(".mensagem-erro");
+
+        erros.forEach(function(g){
+
+
+
+            g.remove();
+
+        });
+
+        email.style.border = "";
+        senha.style.border = "";
+        tipoAcesso.style.border = "";
+
+    }
+
+</script>
 </body>
 </html>
