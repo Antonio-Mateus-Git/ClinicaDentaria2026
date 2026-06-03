@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Dentária: Sorriso Real</title>
     <link rel="stylesheet" href="../styles/estiloGlobal.css">
+    
     <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -119,6 +120,12 @@ select:focus{
             gap: 5px;
             width: 45%;
         }
+        .erro{
+    color:#ef4444;
+    font-size:14px;
+    margin-top:4px;
+    display:block;
+}
 
     </style>
 </head>
@@ -160,6 +167,186 @@ select:focus{
             </div>
         </form>
     </div>
+    <script>
+const form = document.getElementById("formulario");
+
+const nomeCompleto = document.getElementById("nomeCompleto");
+const email = document.getElementById("email");
+const genero = document.getElementById("genero");
+const tipoUsuario = document.getElementById("tipoUsuario");
+const dataNascimento = document.getElementById("dataNascimento");
+const telefone = document.getElementById("telefone");
+const morada = document.getElementById("morada");
+const senha = document.getElementById("senha");
+const senhaConf = document.getElementById("senhaConf");
+
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    limparErros();
+
+    let cadastroValido = true;
+
+    // Nome Completo
+    if(nomeCompleto.value.trim() === ""){
+        mostraErro(nomeCompleto, "O nome completo é obrigatório.");
+        cadastroValido = false;
+    }
+    else if(nomeCompleto.value.trim().split(" ").length < 2){
+        mostraErro(nomeCompleto, "Digite nome e sobrenome.");
+        cadastroValido = false;
+    }
+
+    // Email
+    if(email.value.trim() === ""){
+        mostraErro(email, "O e-mail é obrigatório.");
+        cadastroValido = false;
+    }
+    else if(!validarEmail(email.value)){
+        mostraErro(email, "Digite um e-mail válido.");
+        cadastroValido = false;
+    }
+
+    // Género
+    if(genero.value === ""){
+        mostraErro(genero, "Escolha um género.");
+        cadastroValido = false;
+    }
+
+    // Data de nascimento
+    if(dataNascimento.value === ""){
+        mostraErro(dataNascimento, "A data de nascimento é obrigatória.");
+        cadastroValido = false;
+    }
+    else{
+
+        const hoje = new Date();
+        const nascimento = new Date(dataNascimento.value);
+
+        let idade = hoje.getFullYear() - nascimento.getFullYear();
+
+        const mesAtual = hoje.getMonth();
+        const mesNascimento = nascimento.getMonth();
+
+        if(
+            mesAtual < mesNascimento ||
+            (
+                mesAtual === mesNascimento &&
+                hoje.getDate() < nascimento.getDate()
+            )
+        ){
+            idade--;
+        }
+
+        if(idade < 0 || idade > 120){
+            mostraErro(dataNascimento, "Data de nascimento inválida.");
+            cadastroValido = false;
+        }
+    }
+
+    // Telefone
+    const telefoneLimpo = telefone.value.replace(/\D/g, "");
+
+    if(telefone.value.trim() === ""){
+        mostraErro(telefone, "O telefone é obrigatório.");
+        cadastroValido = false;
+    }
+    else if(telefoneLimpo.length < 9){
+        mostraErro(telefone, "Digite um telefone válido.");
+        cadastroValido = false;
+    }
+
+    // Morada
+    if(morada.value.trim() === ""){
+        mostraErro(morada, "A morada é obrigatória.");
+        cadastroValido = false;
+    }
+    else if(morada.value.trim().length < 5){
+        mostraErro(morada, "Digite uma morada válida.");
+        cadastroValido = false;
+    }
+
+    // Senha
+    if(senha.value.trim() === ""){
+        mostraErro(senha, "A senha é obrigatória.");
+        cadastroValido = false;
+    }
+    else if(
+        !/(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}/.test(senha.value)
+    ){
+        mostraErro(
+            senha,
+            "A senha deve ter pelo menos 8 caracteres, uma letra maiúscula e um número."
+        );
+        cadastroValido = false;
+    }
+
+    // Confirmar senha
+    if(senhaConf.value.trim() === ""){
+        mostraErro(senhaConf, "Confirme a senha.");
+        cadastroValido = false;
+    }
+    else if(senha.value !== senhaConf.value){
+        mostraErro(senhaConf, "As senhas não coincidem.");
+        cadastroValido = false;
+    }
+
+    if(cadastroValido){
+        alert("Paciente cadastrado com sucesso!");
+        form.submit();
+    }
+
+});
+
+function mostraErro(campo, mensagem){
+
+    campo.style.border = "2px solid #ef4444";
+
+    const erro = document.createElement("span");
+
+    erro.className = "erro";
+    erro.textContent = mensagem;
+
+    erro.style.color = "#ef4444";
+    erro.style.fontSize = "14px";
+    erro.style.marginTop = "4px";
+    erro.style.display = "block";
+
+    campo.parentNode.appendChild(erro);
+}
+
+function limparErros(){
+
+    document
+        .querySelectorAll(".erro")
+        .forEach(erro => erro.remove());
+
+    const campos = [
+        nomeCompleto,
+        email,
+        genero,
+        tipoUsuario,
+        dataNascimento,
+        telefone,
+        morada,
+        senha,
+        senhaConf
+    ];
+
+    campos.forEach(campo => {
+        campo.style.border = "";
+    });
+}
+
+function validarEmail(email){
+
+    const regex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return regex.test(email);
+}
+</script>
 
 </body>
 </html>
