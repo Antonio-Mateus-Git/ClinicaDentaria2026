@@ -128,9 +128,9 @@ select:focus{
         <form method="post" id="formulario">
             <div class="part01">
                 <label for="nomeCompleto">Nome Completo: </label>
-                <input type="text" name="nomeCompleto" id=""nomeCompleto>
+                <input type="text" name="nomeCompleto" id="nomeCompleto" placeholder="xxx xxx">
                 <label for="email">E-mail: </label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" required placeholder="exemploemail@gmail.com">
                 <label for="genero">Gênero: </label>
                 <select name="genero" id="genero">
                     <option value="" disabled selected>Escolher Gênero...</option>
@@ -149,16 +149,17 @@ select:focus{
             </div>
             <div class="part02">
                 <label for="telefone">Número Telefônico: </label>
-                <input type="tel" name="telefone" id="telefone" required>
+                <input type="tel" name="telefone" id="telefone" required placeholder="900 000 000">
                 <label for="morada">Endereço/Morada: </label>
-                <input type="text" name="morada" id="morada" required>
+                <input type="text" name="morada" id="morada" required placeholder="quinta avenida">
                 <label for="senha">Criar Senha: </label>
-                <input type="password" name="senha" id="senha" required>
+                <input type="password" name="senha" id="senha" required placeholder="mínimo 8 caracteres...">
                 <label for="senhaConf">Confirmar Senha: </label>
-                <input type="password" name="senhaConf" id="senhaConf" required>
+                <input type="password" name="senhaConf" id="senhaConf" required placeholder="confirmar senha...">
                 <button type="submit" id="cadastro">Cadastrar Paciênte</button>
             </div>
         </form>
     </div>
+
 </body>
 </html>
