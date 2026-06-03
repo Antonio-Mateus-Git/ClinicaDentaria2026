@@ -23,19 +23,37 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            background: linear-gradient(
+135deg,
+#eff6ff,
+#f8fafc,
+#dbeafe
+);
+                    min-height:100vh;
         }
         body > h1{
             text-align: center;
             display: flex;
         }
+        
+        h1,h2,h3{
+    font-weight: 700;
+    letter-spacing: -1px;
+}
         form{
             display: flex;
             justify-content: space-between;
-            padding: 20px;
-            width: 800px;
-            background: rgba(255,255,255,0.75);
-            border-radius: 10px;
-            box-shadow: 0px 10px 40px rgba(0,0,0,0.1);
+            background: white;
+
+    border-radius: 24px;
+                width: 800px;
+    padding: 40px;
+
+    box-shadow:
+    0 20px 60px rgba(15,23,42,0.08);
+
+    border: 1px solid #e2e8f0;
+        
 
         }
         form input, form select, form  button{
@@ -45,80 +63,98 @@
             border: none;
             outline: none;
             background-color: #00000010;
+            font-family: 'Inter', sans-serif;
         }
+        
         form  button{
-            margin-top: 25px;
-             background: linear-gradient(45deg,rgb(51, 216, 51), rgb(135, 233, 135));
-        }
-       form input, form select{
-padding: 15px;
+           background: rgb(60, 151, 60);
 
+    color: white;
+
+    font-weight: 600;
+margin-top: 20px;
+    cursor: pointer;
+    padding: 15px;
     border-radius: 14px;
-
-    border: 1.5px solid #d1e3fc;
-
-    background: white;
-
+border: none;
     transition: 0.3s ease;
-
-    font-size: 1rem;
         }
-        
-         
-           
-          
-        
+        form button:hover{
+    background: #6ab68f;
+
+    transform: translateY(-2px);
+}
+       form input, form select{
+
+         padding:16px;
+
+    border-radius:14px;
+
+    border:1.5px solid #dbeafe;
+
+    background:white;
+
+    transition:0.3s ease;
+
+    font-size:1rem;
+
+        }
+        input:focus,
+select:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,0.15);
+}
+            label{
+                 margin-top:8px;
+    font-weight: 600;
+    color: #334155;}
+
         .part01, .part02{
             display: flex;
             flex-direction: column;
             gap: 5px;
             width: 45%;
         }
-        span{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        span > img{
-            width: 50px;
-            height: 40px;
-        }
+
     </style>
 </head>
 <body>
-    <h1>Clínica Dentária <span><img src="../images/AIRetouch_20260520_162007909.png" alt=""> Real</span>: Cadastro de Paciênte</h1>
+    <h1> Cadastro de Paciênte</h1>
     <div class="formularioCAdastroPaciente">
         <form action="" method="post">
             <div class="part01">
                 <label for="nomeCompleto">Nome Completo: </label>
-                <input type="text" name="nomeCompleto" id="nomeCompleto">
+                <input type="text" name="nomeCompleto" id="nomeCompleto" required>
                 <label for="email">E-mail: </label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
                 <label for="genero">Gênero: </label>
                 <select name="genero" id="genero">
-                    <option disabled selected>Escolher Gênero...</option>
+                    <option value="" disabled selected>Escolher Gênero...</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
                 </select>
                 <label for="tipoUsuario">Tipo de Usuário: </label>
-                <select name="tipoUsuario" id="tipoUsuario">
+                <select name="tipoUsuario" id="tipoUsuario" required>
                     <option value="Administrador" disabled>Administrador</option>
                     <option value="Paciente" selected>Paciênte</option>
                     <option value="Dentista" disabled>Dentista</option>
                     <option value="Recepcionista" disabled>Recepcionísta</option>
                 </select>
                 <label for="dataNascimento">Data de Nascimento: </label>
-                <input type="date" name="dataNascimento" id="dataNascimento">
+                <input type="date" name="dataNascimento" id="dataNascimento" required>
             </div>
             <div class="part02">
-                <label for="telefone">Numero Telefonico: </label>
-                <input type="tel" name="telefone" id="telefone">
+                <label for="telefone">Número Telefônico: </label>
+                <input type="tel" name="telefone" id="telefone" required>
                 <label for="morada">Endereço/Morada: </label>
-                <input type="text" name="morada" id="morada">
+                <input type="text" name="morada" id="morada" required>
                 <label for="senha">Criar Senha: </label>
-                <input type="password" name="senha" id="senha">
+                <input type="password" name="senha" id="senha" required>
                 <label for="senhaConf">Confirmar Senha: </label>
-                <input type="password" name="senhaConf" id="senhaConf">
+                <input type="password" name="senhaConf" id="senhaConf" required>
                 <button type="submit" id="cadastro">Cadastrar Paciênte</button>
             </div>
         </form>
@@ -133,9 +169,9 @@ padding: 15px;
         const email = document.getElementById("email");
     const senha = document.getElementById("senha");
     const morada =document.getElementById("morada");
-    const numero= document.getElementById("numero");
+    const telefone= document.getElementById("telefone");
     const senhaConf =document.getElementById("senhaConf")
-    const tipoAcesso = document.getElementById("tipoAcesso");
+    const tipoUsuario = document.getElementById("tipoUsuario");
 
 
         form.addEventListener("submit", function(event) {
@@ -145,15 +181,24 @@ padding: 15px;
             limparErros();
 
             let CadastroValido= true;
-
+            if(nomeCompleto.value.trim() === ""){
+            mostraErro(nomeCompleto, "O nome completo é obrigatório.");
+            CadastroValido = false;
+        }else if(nomeCompleto.value.trim().split(" ").length < 2){
+    mostraErro(
+        nomeCompleto,
+        "Digite nome e sobrenome."
+    );
+    CadastroValido = false;
+}
             if(email.value.trim() ===""){
                 mostraErro(email, "email e obrigatório");
                 CadastroValido = false;
 
             } else if(!ValidarEmail(email.value)){
 
-                mostrarErro(email, "Digite um e-mail válido.");
-            formularioValido = false;
+                mostraErro(email, "Digite um e-mail válido.");
+            CadastroValido = false;
             }
 
             if(senha.value.trim() === ""){
@@ -161,24 +206,114 @@ padding: 15px;
                 CadastroValido= false
             }
             else if(senha.value.length <8 ){
-                mostrarErro(senha, "A senha deve ter no mínimo 8 caracteres.");
+                mostraErro(senha, "A senha deve ter no mínimo 8 caracteres.");
                 CadastroValido= false;
 
+            }else if( !/(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}/.test(senha.value)
+){
+    mostraErro(
+        senha,
+        "A senha deve ter pelo menos 8 caracteres, uma letra maiúscula e um número."
+    );
+    CadastroValido = false;
+}
+            if(senhaConf.value.trim() === ""){
+                mostraErro(senhaConf, "A confirmação da senha é obrigatória.");
+                CadastroValido = false;
+            } else if(senha.value !== senhaConf.value){
+                mostraErro(senhaConf, "A palavra passe é incompatível.");
+                CadastroValido = false;
             }
-            if(senha.value.length != senhaConf.value.length){
 
-                mostraErro(senha, "A palavra passe é incompatível.");
-                CadastroValido= false
-            }
-            
-            if(tipoAcesso.selectedIndex === 0){
+            if(tipoUsuario.value === ""){
 
-            mostrarErro(tipoAcesso, "Escolha um tipo de acesso.");
-            formularioValido = false;
+            mostraErro(tipoUsuario, "Escolha um tipo de acesso.");
+            CadastroValido = false;
 
         }
+        
+        const hoje = new Date();
+        const nascimento = new Date(dataNascimento.value);
+        const idade = hoje.getFullYear() - nascimento.getFullYear();
+        const mesAtual = hoje.getMonth();
+        const mesNascimento = nascimento.getMonth();
 
-        })
+        if(dataNascimento.value.trim() === ""){
+            mostraErro(dataNascimento, "A data de nascimento é obrigatória.");
+            CadastroValido = false;
+        } else if(idade < 0 || idade > 120){
+            mostraErro(dataNascimento, "Digite uma data de nascimento válida.");
+            CadastroValido = false;
+        }               
+        else 
+if(
+    mesAtual < mesNascimento ||
+    (mesAtual === mesNascimento &&
+     hoje.getDate() < nascimento.getDate())
+){
+    idade--;
+}
+        if(genero.value === ""){
+            mostraErro(genero, "Escolha um gênero.");
+            CadastroValido = false;
+        }
+        if(morada.value.trim() === ""){
+            mostraErro(morada, "O endereço é obrigatório.");
+            CadastroValido = false;
+        } else if(morada.value.trim().length < 5){
+    mostraErro(
+        morada,
+        "Digite um endereço válido."
+    );
+    CadastroValido = false;
+}
+        const telefoneLimpo = telefone.value.replace(/\D/g, "");
+        if(telefone.value.trim() === ""){
+            mostraErro(telefone, "O número de telefone é obrigatório.");
+            CadastroValido = false;
+        }else if(telefoneLimpo.length < 9){
+    mostraErro(telefone, "Telefone inválido.");
+    CadastroValido = false;
+}
+
+        
+                                    if(CadastroValido){
+    alert("Paciente cadastrado com sucesso!");
+    form.submit();
+}
+        });
+        function mostraErro(campo, mensagem) {
+            campo.style.border= "2px solid red";
+            const erro = document.createElement("span");
+
+            
+            erro.style.color = "red";
+            erro.style.fontSize = "14px";
+            erro.className = "erro";
+            erro.textContent = mensagem;
+            campo.parentNode.appendChild(erro);
+        }
+
+        function limparErros() {
+            const erros = document.querySelectorAll(".erro");
+            erros.forEach(erro => erro.remove());
+
+            email.style.border = "";
+        senha.style.border = "";
+        tipoUsuario.style.border = "";
+        senhaConf.style.border = "";
+        nomeCompleto.style.border = "";
+        dataNascimento.style.border = "";
+        genero.style.border = "";
+        morada.style.border = "";
+        telefone.style.border = "";
+        }
+
+        function ValidarEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
     </script>
 </body>
 </html>

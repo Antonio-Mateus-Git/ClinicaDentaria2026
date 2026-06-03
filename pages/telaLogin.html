@@ -37,17 +37,14 @@
 
     color: #0f172a;
 }
-        body > h1{
-            text-align: center;
-            display: flex;
-        }
+        
         form{
             display: flex;
             flex-direction: column;
             padding: 20px;
             max-width: 450px;
-            width: 100%;
-            height: 490px;
+            width: 130%;
+            height: 440px;
             margin: 0 auto;
              background: rgba(255,255,255,0.75);
     backdrop-filter: blur(10px);
@@ -113,20 +110,24 @@ form button:hover{
 
     transform: translateY(-2px);
 }
-
-        span{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        span > img{
-            width: 50px;
-            height: 40px;
-        }
+.doi{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+}
+.doi h1{
+    text-align: center;
+    margin-left: 50px;
+}
+        
     </style>
 </head>
 <body>
-    <h1>Clínica Dentária <span><img src="../images/AIRetouch_20260520_162007909.png" alt="">Real</span>: Fazer login</h1>
+    <div class="doi">
+    <h1>login</h1>
+    
+</div>
     <div class="container-tela-login">
         <form action="" method="post">
             <label for="email">E-mail: </label>
@@ -137,6 +138,7 @@ form button:hover{
             <select name="tipoAcesso" id="tipoAcesso">
                 <option disabled selected>Tipos de acesso...</option>
                 <option value="Paciente">Paciênte</option>
+                
 
             </select>
             
