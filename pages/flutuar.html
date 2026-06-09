@@ -1,0 +1,133 @@
+!<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bolinhas Flutuantes</title>
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    position: relative;
+}
+
+/* Container das bolinhas */
+.bolhas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Bolinhas */
+.bolhas span{
+    position: absolute;
+    bottom: -150px;
+
+    width: 60px;
+    height: 60px;
+
+    background: rgba(255, 255, 255, 0.258);
+
+    border-radius: 50%;
+
+    animation: subir 15s linear infinite;
+}
+
+/* Animação */
+@keyframes subir{
+    0%{
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+
+    10%{
+        opacity: 1;
+    }
+
+    100%{
+        transform: translateY(-120vh) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Variando posições e tamanhos */
+.bolhas span:nth-child(1){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-duration: 10s;
+}
+
+.bolhas span:nth-child(2){
+    left: 30%;
+    width: 60px;
+    height: 60px;
+    animation-duration: 18s;
+}
+
+.bolhas span:nth-child(3){
+    left: 50%;
+    width: 35px;
+    height: 35px;
+    animation-duration: 14s;
+}
+
+.bolhas span:nth-child(4){
+    left: 70%;
+    width: 50px;
+    height: 50px;
+    animation-duration: 20s;
+}
+
+.bolhas span:nth-child(5){
+    left: 90%;
+    width: 25px;
+    height: 25px;
+    animation-duration: 12s;
+}
+
+.conteudo{
+    position: relative;
+    z-index: 1;
+
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 40px;
+    font-family: Arial;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bolhas">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="conteudo">
+    Fundo Animado
+</div>
+
+</body>
+</html>
