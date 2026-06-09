@@ -5,49 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Dentária: Sorriso Real</title>
     <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        html, body{
+            height: 100vh;
+            width: 100%;
+            background-color: aqua;
+        }
+        .subConteudoSite{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(128, 128, 128, 0.744);
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border: 4px solid #ffffff75;
+            border-radius: 20px;
+            background-color: #ffffff50;
+            backdrop-filter: blur(10px);
+            width: 60%;
+        }
+        .container > h1{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 1.2rem;
+        }
+        form > input, select{
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            transition-duration: 2s;
+        }
+        form > input:focus, select:focus{
+            border: 2px solid rgb(0, 255, 17);
+        }
+
+    </style>
 </head>
 <body>
-    <div>
-        <h1>Informações Médicas Gerais</h1>
-        <form >
-            <label for="tipoSang">Tipo sanguineo</label>
-            <select name="tipoSang" id="tipoSang">
-                <option value="" selected disabled>Escolher opção (Obrigatório)</option>
-                <option value=""></option>
-            </select>
-            <label for="tipoAlerg">Tipo de Alergia</label>
-            <select name="tipoAlerg" id="tipoAlerg">
-                <option value="" selected disabled>Escolher opção (Obrigatório)</option>
-                <option value="Medicamentos">Medicamentos</option>
-                <option value="Anestesia">Anestesia</option>
-                <option value="Alimentos Relevantes">Alimentos Relevantes</option>
-                <option value="Outra">Outra</option>
-            </select>
-            <label for="tipoDoenca">Doença</label>
-            <select name="tipoDoenca" id="tipoDoenca">
-                <option value="" selected disabled>Escolher opção (Obrigatório)</option>
-                <option value="Diabete">Diabete</option>
-                <option value="Hipertensão">Hipertensão</option>
-                <option value="Asma">Asma</option>
-                <option value="Epilepsia">Epilepsia</option>
-                <option value="Nenhuma dianosticada">Nenhuma diagnosticada</option>
-                <option value="Outra">Outra</option>
-            </select>
-            <label for="MedicamentosUso">Medicamentos em uso</label>
-            <input type="text" name="MedicamentosUso" id="MedicamentosUso", placeholder="Separar por virgula (,) ...">
-            <label for="fumar">Fumante?</label>
-            <select name="fumar" id="fumar">
-                <option value="" selected disabled>Escolher opção (Obrigatório)</option>
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
-            </select>
-            <label for="alcolotra">Consome álcool?</label>
-            <select name="alcolotra" id="alcolotra">
-                <option value="" selected disabled>Escolher opção (Obrigatório)</option>
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
-            </select>
-        </form>
+    <div class="subConteudoSite">
+        <div class="container">
+            <h1>Informações Médicas Gerais</h1>
+            <form >
+                <label for="tipoSang">Tipo sanguineo</label>
+                <select name="tipoSang" id="tipoSang">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value=""></option>
+                </select>
+                <label for="tipoAlerg">Tipo de Alergia</label>
+                <select name="tipoAlerg" id="tipoAlerg">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Medicamentos">Medicamentos</option>
+                    <option value="Anestesia">Anestesia</option>
+                    <option value="Alimentos Relevantes">Alimentos Relevantes</option>
+                    <option value="Outra">Outra</option>
+                </select>
+                <label for="tipoDoenca">Doença</label>
+                <select name="tipoDoenca" id="tipoDoenca">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Diabete">Diabete</option>
+                    <option value="Hipertensão">Hipertensão</option>
+                    <option value="Asma">Asma</option>
+                    <option value="Epilepsia">Epilepsia</option>
+                    <option value="Nenhuma dianosticada">Nenhuma diagnosticada</option>
+                    <option value="Outra">Outra</option>
+                </select>
+                <label for="MedicamentosUso">Medicamentos em uso</label>
+                <input type="text" name="MedicamentosUso" id="MedicamentosUso", placeholder="Separar por virgula (,) ...">
+                <label for="fumar">Fumante?</label>
+                <select name="fumar" id="fumar">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+                <label for="alcolotra">Consome álcool?</label>
+                <select name="alcolotra" id="alcolotra">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+            </form>
+        </div>
     </div>
 </body>
 </html>
