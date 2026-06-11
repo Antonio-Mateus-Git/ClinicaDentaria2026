@@ -144,3 +144,48 @@ i{
     display: flex;
     flex-direction: column;
 }
+
+
+/* ESTILO DO FILTRO DE PESQUISA */
+
+.painelFiltro{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #70005d;
+    margin: 10px;
+    border-radius: 40px;
+}
+.painelFiltro > h1{
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+.painelFiltro > form > label {
+    border: 2px solid #00000050;
+    display: flex;
+    border-radius: 20px;
+    
+}
+.painelFiltro > form > label > input{
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 1.1rem;
+    
+}
+.painelFiltro > form > label > i.fa-search{
+    border-radius: 0;
+    border: none;
+    margin: 0px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #00e1ff;
+    color: #70005d;
+    padding-left: 10px;
+    padding-right: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+}

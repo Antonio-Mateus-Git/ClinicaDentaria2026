@@ -7,6 +7,139 @@
     <link rel="stylesheet" href="../styles/estiloGlobal.css">
     <link rel="stylesheet" href="../iconsFonteawesome/css/all.min.css">
     <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
+    <style>
+        .painelConsultas{
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            width: 100%;
+            height: 480px;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .card-consulta{
+            border: 2px solid #00000050;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            padding: 10px;
+            width: 250px;
+            align-items: center;
+            height: 460px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #00000020;
+            backdrop-filter: blur(10px);
+            margin: 0px 20px;
+        }
+        .card-consulta > .imagem{
+            background-color: #00000050;
+            border-radius: 20px;
+            height: 300px;
+            width: 100%;
+        }
+        .card-consulta > .dadosConsulta{
+            width: 100%;
+            height: 150px;
+            border-radius: 20px;
+        }
+        .card-consulta > .dadosConsulta > h3 {
+            text-align: center;
+            margin: 10px 0px;
+        }
+        .card-consulta > .dadosConsulta > p {
+            margin: 10px 0px;
+        }
+        .card-consulta > .dadosConsulta > button{
+            padding: 15px 10px;
+            width: 100%;
+            border: 2px solid #00000050;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            background-color: white;
+            font-weight: bold;
+            transition-duration: 1s;
+        }
+        .card-consulta > .dadosConsulta > button:hover{
+            background-color: #00e1ff;
+        }
+        .containnerModel{
+            width: 100%;
+            height: 100%;
+            background-color: #00000020;
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .model{
+            width: 450px;
+            border: 4px solid #ffffff50;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .model > h1{
+            text-align: center;
+            margin: 20px 0px;
+            text-transform: capitalize;
+        }
+        .model > form {
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            font-size: 1.2rem;
+        }
+        .model > form > input{
+            padding: 10px;
+            border: 2px solid transparent;
+            outline: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+        }
+        .model > form > textarea{
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+        }
+        .btnsAction{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .btnsAction > button{
+            margin-top: 10px;
+            color: white;
+            padding: 15px;
+            border: 2px solid #00000050;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            transition-duration: 1s;
+        }
+        .btnsAction > :nth-child(1){
+            background-color: #00e1ff;
+            color: #70005d;
+        }
+        .btnsAction > :nth-child(2){
+            background-color: #70005d;
+            color: #00e1ff;
+        }
+        .btnsAction > :nth-child(2):hover{
+            background-color: #00e1ff;
+            color: #70005d;
+        }
+        .btnsAction > :nth-child(1):hover{
+            background-color: #70005d;
+            color: #00e1ff;
+        }
+
+    </style>
 </head>
 <body>
     <div class="slideBar">
@@ -16,9 +149,10 @@
         </div>
         <p>Menu do sistema: <strong>Paciênte</strong></p>
         <div class="itensMenu">
-            <a href="pacientePaginaConsultas.html" style="background-color: #10a5b9; color: #ffffff;"><i class="fas fa-stethoscope"></i>Consultas</a>
+            <a href="pacientePaginaConsultas.html" style="background-color: green; color: #ffffff;"><i class="fas fa-stethoscope"></i>Consultas</a>
             <a href="pacientePaginaHistorico.html"><i class="fas fa-notes-medical"></i>Historico Clínico</a>
             <a href="pacientePaginaMarcacoes.html"><i class="fas fa-calendar-check"></i>Marcações</a>
+            <a href="#"><i class="fas fa-bell"></i>Notificações</a>
             <a href="pacienteDadosPessoais.html"><i class="fas fa-user"></i>Perfil</a>
             <a class="sair" href="#"><i class="fas fa-arrow-right-from-bracket"></i>Sair</a>
         </div>
@@ -44,8 +178,157 @@
         </div>
     </div>
     <div class="painelPrincipal">
+        <div class="painelFiltro">
+            <h1>Filtro de consultas</h1>
+            <form action="">
+                <label for="pesquisar"><i class="fas fa-search"></i><input type="text" name="pesquisar" id="pesquisar" placeholder="filtrar consulta pelo nome..."></label>
+            </form>
+        </div>
+        <div class="painelConsultas" id="painelConsultas">
+            
+        </div>
+        <!-- MODEL DE DETALHE DAS CONSULTAS -->
+        <div class="containnerModel" id="containnerModel">
+            <div class="model">
+                <h1>detalhes consulta</h1>
+                <form id="formularioMarcacao">
+                    <label for="tipoConsulta">Tipo Consulta</label>
+                    <input type="text" name="tipoConsulta" id="tipoConsulta" readonly>
+                    <label for="duracaoConsulta">Duração Consulta</label>
+                    <input type="text" name="duracaoConsulta" id="duracaoConsulta" readonly>
+                    <label for="valorConsulta">Valor Consulta</label>
+                    <input type="text" name="valorConsulta" id="valorConsulta" readonly>
+                    <label for="dataConsulta">Data Consulta</label>
+                    <input type="date" name="dataConsulta" id="dataConsulta">
+                    <label for="descricaoConsult">Descrição Consulta</label>
+                    <textarea name="descricaoConsult" id="descricaoConsult" readonly></textarea>
+                    <div class="btnsAction">
+                        <button type="submit">Solicitar marcacao de consulta</button>
+                        <button type="button" id="btn-close">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+    <script>
+        /*ARRAY DE OBJETOS CONTENDO OS DADOS DAS CONSULTAS*/
+        const consultas = [
+            {
+                id: 1,
+                tipo: "Consulta Geral",
+                duracao: "30 min",
+                valor: 5000,
+                descricao: "Avaliação geral da saúde oral, diagnóstico e orientação do tratamento."
+            },
+            {
+                id: 2,
+                tipo: "Limpeza Dentária",
+                duracao: "45 min",
+                valor: 8000,
+                descricao: "Remoção de placa bacteriana e tártaro para prevenção de doenças gengivais."
+            },
+            {
+                id: 3,
+                tipo: "Branqueamento Dentário",
+                duracao: "2 horas",
+                valor: 25000,
+                descricao: "Procedimento estético para clarear os dentes e melhorar o sorriso."
+            },
+            {
+                id: 4,
+                tipo: "Extração Dentária",
+                duracao: "1 hora",
+                valor: 15000,
+                descricao: "Remoção de um dente comprometido por cárie, infeção ou outros problemas."
+            },
+            {
+                id: 5,
+                tipo: "Tratamento de Cárie",
+                duracao: "1 hora",
+                valor: 12000,
+                descricao: "Limpeza da cavidade afetada e restauração do dente."
+            },
+            {
+                id: 6,
+                tipo: "Canal Dentário",
+                duracao: "2 horas",
+                valor: 35000,
+                descricao: "Tratamento da polpa dentária para eliminar infeções e preservar o dente."
+            },
+            {
+                id: 7,
+                tipo: "Consulta Ortodôntica",
+                duracao: "45 min",
+                valor: 10000,
+                descricao: "Avaliação para colocação ou acompanhamento de aparelho dentário."
+            },
+            {
+                id: 8,
+                tipo: "Implante Dentário",
+                duracao: "3 horas",
+                valor: 120000,
+                descricao: "Substituição de dentes perdidos através da colocação de implantes."
+            }
+        ];
+        /*SELECIONANDO OS ELEMENTOS HTML VIA DOM*/
+        let painelConsultas = window.document.getElementById("painelConsultas")
+        let pesquisar = window.document.getElementById("pesquisar")
+        /*FUNÇÃO PARA FILTRAR AS CONSULTAS*/
+        function filtrarConsulta(filtro = "") {
+            painelConsultas.innerHTML = ""
+            consultas.filter(consulta =>consulta.tipo.toLowerCase().includes(filtro)).forEach(consulta=>{
+                /*RENDERIZANDO AS CONSULTAS NO HTML VIA JS*/
+                painelConsultas.innerHTML += `
+                    <div class="card-consulta">
+                        <div class="imagem">
+                        
+                        </div>
+                        <div class="dadosConsulta">
+                            <h3>${consulta.tipo}</h3>
+                            <p>Duração: <strong>${consulta.duracao}</strong></p>
+                            <button class="btn" data-id=${consulta.id}>Ver detalhes</button>
+                        </div>
+                    </div>
+                `  
+            })
+        }
+        /*CHAMANDO A FUNÇÃO DE FILTRO*/
+        filtrarConsulta()
+        pesquisar.addEventListener("input", ()=>{
+            let valor = pesquisar.value.toLowerCase()
+            filtrarConsulta(valor)
+        })
+        /*Pegando os campos da model*/
+        let containnerModel = window.document.getElementById("containnerModel")
+        let tipoConsulta = window.document.getElementById("tipoConsulta")
+        let duracaoConsulta = window.document.getElementById("duracaoConsulta")
+        let valorConsulta = window.document.getElementById("valorConsulta")
+        let descricaoConsult = window.document.getElementById("descricaoConsult")
+        let dataConsulta = window.document.getElementById("dataConsulta")
+        let btnClose = window.document.getElementById("btn-close")
+        containnerModel.style.display = "none"
+        painelConsultas.addEventListener("click", (event) => {
+            if(event.target.classList.contains("btn")){
+
+                containnerModel.style.display = "flex";
+
+                let id = Number(event.target.dataset.id);
+
+                let consulta = consultas.find(c => c.id === id);
+
+                if(consulta){
+                    tipoConsulta.value = consulta.tipo;
+                    duracaoConsulta.value = consulta.duracao;
+                    valorConsulta.value = consulta.valor + ",00 Kzs";
+                    descricaoConsult.value = consulta.descricao;
+                }
+            }
+        });
+        btnClose.addEventListener("click", ()=>{
+            containnerModel.style.display = "none"
+        })
         
-    </div>
+    </script>
     <script src="../JavaScript/contador.js"></script>
 </body>
 </html>
