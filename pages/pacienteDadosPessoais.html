@@ -8,12 +8,121 @@
     <link rel="stylesheet" href="../iconsFonteawesome/css/all.min.css">
     <link rel="shortcut icon" href="../images/AIRetouch_20260520_162007909.png" type="image/x-icon">
     <style>
+        .subConteudoSite{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #00000063;
+            align-items: center;
+            justify-content: center;
+        }
+        .container, .container1{
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border: 2px solid #ffffff3d;
+            border-radius: 20px;
+            background-color: #086672b3;
+            backdrop-filter: blur(5px);
+            width: 60%;
+            transform: scale(.9);
+        }
+        .container > h1, .container1 > h1{
+            text-align: center;
+            margin-bottom: 30px;
+            color: #000000;
+        }
+        #formularioOdontologico{
+            width: 100%;
+            display: flex;
+            font-size: 1.2rem;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        .container > form{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr .1fr;
+            grid-template-areas: 
+                "lefts rights"
+                "bottoms bottoms"
+            ;
+            font-size: 1.2rem;
+        }
+        .left{
+            grid-area: lefts;
+            margin-right: 30px;
+        }
+        .right{
+            grid-area: rights;
+        }
+        .bottom{
+            grid-area: bottoms;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .bottom > button, #button{
+            padding: 10px 60px;
+            border: 2px solid white;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition-duration: 1s;
+            background-color: #70005d;
+            color: #ffffff;
+        }
+        #button{
+            margin-top: 20px;
+        }
+        .bottom > button:hover, #button:hover{
+            background-color: #10a5b9;
+            color: #ffffff;
+        }
+        .left, .right{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .container > form  input, select{
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            transition-duration: 2s;
+            font-size: 1.2rem;
+            background-color: #70005d;
+            color: white;
+        }
+        .container > form  input::placeholder{
+            color: #ffffff;
+        }
+        input:focus, select:focus{
+            box-shadow: 0px 0px 5px rgb(0, 255, 72);
+        }
+        .container > form > select{
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        .mostrar{
+            transform: scale(1);
+        }
         .painelPrincipal{
             grid-area: painelPrincipal;
             display: grid;
             grid-template-columns: .7fr 1fr;
             grid-template-areas: "perfil informacoesClinicasPaciente";
-            background-color: #dadada;
+            background-color: #10a5b9;
         }
         .perfil{
             grid-area: perfil;
@@ -36,6 +145,7 @@
             border-radius: 20px;
             border: 2px ridge transparent;
             box-shadow: 0px 0px 2px #00000060;
+            background-color: #00000040;
         }
         .perfil > .dadosPessoias p{
             padding: 8px;
@@ -44,6 +154,10 @@
             overflow-x: hidden;
             white-space: nowrap;
             width: 80%;
+            color: white;
+        }
+        .perfil > .dadosPessoias p strong{
+            text-decoration: underline;
         }
         .informacoesClinicasPaciente{
             grid-area: informacoesClinicasPaciente;
@@ -75,7 +189,7 @@
             height: 50px;
             color: #ffffff;
             padding: 10px;
-            background-color: #000000;
+            background-color: #70005d;
             border-radius: 50%;
             margin-right: 20px;
             display: flex;
@@ -97,6 +211,8 @@
             border-radius: 10px;
             border: 2px ridge transparent;
             box-shadow: 0px 0px 2px #00000060;
+            background-color: #70005d;
+            color: #ffffff;
             font-weight: bold;
             margin-right: 20px;
             animation: pulso 2s infinite;
@@ -106,7 +222,7 @@
             padding: 10px 20px;
             border-radius: 10px;
             border: 2px ridge transparent;
-            background-color: #000000;
+            background-color: #70005d;
             color: #ffffff;
             font-weight: bold;
             transition-duration: 1s;
@@ -132,7 +248,8 @@
             <a href="pacientePaginaConsultas.html"><i class="fas fa-stethoscope"></i>Consultas</a>
             <a href="pacientePaginaHistorico.html"><i class="fas fa-notes-medical"></i>Historico Clínico</a>
             <a href="pacientePaginaMarcacoes.html"><i class="fas fa-calendar-check"></i>Marcações</a>
-            <a href="pacienteDadosPessoais.html" style="background-color: green; color: #ffffff;"><i class="fas fa-user"></i>Perfil</a>
+            <a href="#"><i class="fas fa-bell"></i>Notificações</a>
+            <a href="pacienteDadosPessoais.html" style="background-color: #10a5b9; color: #ffffff;"><i class="fas fa-user"></i>Perfil</a>
             <a class="sair" href="#"><i class="fas fa-arrow-right-from-bracket"></i>Sair</a>
         </div>
     </div>
@@ -176,26 +293,125 @@
                     <div class="imagemModel"><i class="fas fa-file-medical"></i></div>
                     <div class="descModel">
                         <h3>Informações Médicas Gerais</h3>
-                        <p><button class="expandir">Expandir</button> <button class="cadastrar">Cadastrar dados</button></p>
+                        <p><button class="expandir">Expandir</button> <button class="cadastrar" id="cadastrar">Cadastrar dados</button></p>
                     </div>
                 </div>
                 <div class="opt-02 opc">
                     <div class="imagemModel"><i class="fas fa-tooth"></i></div>
                     <div class="descModel">
                         <h3>Dados Odontológicos</h3>
-                        <p><button class="expandir">Expandir</button> <button class="cadastrar">Cadastrar dados</button></p>
-                    </div>
-                </div>
-                <div class="opt-03 opc">
-                    <div class="imagemModel"><i class="fas fa-teeth-open"></i></div>
-                    <div class="descModel">
-                        <h3>Odontograma</h3>
-                        <p><button class="expandir">Expandir</button> <button class="cadastrar">Cadastrar dados</button></p>
+                        <p><button class="expandir">Expandir</button> <button class="cadastrar" id="buttonOdontologico">Cadastrar dados</button></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="subConteudoSite" id="informacoesMedicasGerais">
+        <div class="container" id="containerMedico">
+            <h1>Informações Médicas Gerais</h1>
+            <form id="formDeInformacoesMedicasGerais">
+                <div class="left">
+                    <label for="tipoSang">Tipo sanguineo</label>
+                    <select name="tipoSang" id="tipoSang">
+                        <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                    <label for="tipoDoenca">Doença</label>
+                    <select name="tipoDoenca" id="tipoDoenca">
+                        <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                        <option value="Diabete">Diabete</option>
+                        <option value="Hipertensão">Hipertensão</option>
+                        <option value="Asma">Asma</option>
+                        <option value="Epilepsia">Epilepsia</option>
+                        <option value="Nenhuma dianosticada">Nenhuma diagnosticada</option>
+                        <option value="Outra">Outra</option>
+                    </select>
+                    <span id="doencas">
+                        <label for="doenca">Informe seu estado Clínico(doença)</label>
+                        <input type="text" name="doenca" id="doenca" placeholder="Campo Obrigatório">
+                    </span>
+                    <label for="fumar">Fumante?</label>
+                    <select name="fumar" id="fumar">
+                        <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                </div>
+                <div class="right">
+                    <label for="MedicamentosUso">Medicamentos em uso</label>
+                    <input type="text" name="MedicamentosUso" id="MedicamentosUso" placeholder="Separar por virgula (,) ...">
+                    <label for="tipoAlerg">Tipo de Alergia</label>
+                    <select name="tipoAlerg" id="tipoAlerg">
+                        <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                        <option value="Medicamentos">Medicamentos</option>
+                        <option value="Anestesia">Anestesia</option>
+                        <option value="Alimentos Relevantes">Alimentos Relevantes</option>
+                    </select>
+                    <span id="alergias">
+                        <label for="alergia">Informe sua alergia</label>
+                        <input type="text" name="alergia" id="alergia" placeholder="Alimentos que causam alergia (;) para separar">
+                    </span>
+                    <label for="alcolotra">Consome álcool?</label>
+                    <select name="alcolotra" id="alcolotra">
+                        <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                </div>
+                <div class="bottom">
+                    <button type="submit">enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="subConteudoSite" id="dadosOdontologicos">
+        <div class="container1" id="containerDadosOdontologicos">
+            <h1>Dados Odontológicos</h1>
+            <form id="formularioOdontologico">
+                <label for="QueixaP">Queixa principal</label>
+                <select name="QueixaP" id="QueixaP">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Dor no molar">Dor no molar</option>
+                    <option value="Sensibilidade">Sensibilidade</option>
+                    <option value="Outra">Outra</option>
+                </select>
+                <label for="aparelho">Uso de aparelho?</label>
+                <select name="aparelho" id="aparelho">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+                <label for="Sensibilidade">Sensibilidade dentária?</label>
+                <select name="Sensibilidade" id="Sensibilidade">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+                <label for="sangramento">Sangramento gengival?</label>
+                <select name="sangramento" id="sangramento">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+                <label for="carie">Histórico de cáries frequentes?</label>
+                <select name="sangramento" id="sangramento">
+                    <option value="" selected disabled>Escolher opção (Obrigatório)</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+                <button type="submit" id="button">Cadastrar</button>
+            </form>
+        </div>
+    </div>
     <script src="../JavaScript/contador.js"></script>
+    <script src="../JavaScript/formulariosClinicos.js"></script>
+    <script src="../JavaScript/formularioOdontologico.js"></script>
 </body>
 </html>
